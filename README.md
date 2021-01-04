@@ -1,5 +1,5 @@
 # gray_api
-Generic API to interact Graylog with other centrall systems  
+Generic API to interact Graylog with other central systems  
 
 
 ## Setup
