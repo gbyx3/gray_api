@@ -97,20 +97,20 @@ def redis_blocklist():
     bottle.response.status = 201
     return 
 
-  try:
-    ssh_invalid_user_ip = data['backlog'][0]['fields']['ssh_invalid_user_ip']
-  except:
-    logger.debug('Failed to read input parameters')
-    bottle.response.status = 400
-    return {'status':400, 'message':'Wrong input parameters'}
-
-  try:
-    update_redis(ssh_invalid_user_ip, db=settings.redis_index)
-    logger.debug('Added {} to redis'.format(ssh_invalid_user_ip,))
-  except:
-    logger.exception('Failed to add IP to redis...')
-    bottle.response.status = 500
-    return {'status_code':500, 'message':'Failed to add ip to redis'}
+  for message in data['backlog']:
+    try:
+      ssh_invalid_user_ip = message['fields']['ssh_invalid_user_ip']
+    except:
+      logger.debug('Failed to read input parameters')
+      bottle.response.status = 400
+      return {'status':400, 'message':'Wrong input parameters'}
+    try:
+      update_redis(ssh_invalid_user_ip, db=settings.redis_index)
+      logger.debug('Added {} to redis'.format(ssh_invalid_user_ip,))
+    except:
+      logger.exception('Failed to add IP to redis...')
+      bottle.response.status = 500
+      return {'status_code':500, 'message':'Failed to add ip to redis'}
 
   bottle.response.status = 200
   return {'status_code':200, 'message':'Successfully added ip to redis'}
