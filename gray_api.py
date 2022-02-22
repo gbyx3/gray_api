@@ -117,4 +117,4 @@ def redis_blocklist():
 
 
 if __name__ == '__main__':
-  bottle.run(host='0.0.0.0', port=8080, debug=True, reloader=True)
+  bottle.run(host='0.0.0.0', port=8080, debug=settings.debug, reloader=True)
