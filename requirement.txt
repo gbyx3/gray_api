@@ -1,5 +1,5 @@
 bottle==0.12.20
-certifi==2023.7.22
+certifi==2024.7.4
 charset-normalizer==2.0.12
 Deprecated==1.2.13
 idna==3.3
